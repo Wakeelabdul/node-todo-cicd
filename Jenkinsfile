@@ -45,20 +45,23 @@ pipeline {
         }
         stage("Update Deployment and Pod") {
             steps {
-            script {
-                def currentBuildNumber = currentBuild.number
-                def updatedImageName = "${env.dockerHubUser}/node-app-test:${currentBuildNumber}"
+                withCredentials([usernamePassword(credentialsId: 'gitHub', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASSWORD')]) {
+                    // Your existing code for updating image and committing changes
+                script {
+                    def currentBuildNumber = currentBuild.number
+                    def updatedImageName = "${env.dockerHubUser}/node-app-test:${currentBuildNumber}"
             
-                // Update Deployment YAML
-                sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/deployment.yaml"
+                    // Update Deployment YAML
+                    sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/deployment.yaml"
             
-                // Update Pod YAML if necessary
-                sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/pod.yaml"
+                    // Update Pod YAML if necessary
+                    sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/pod.yaml"
             
-                // Commit the changes to GitHub
-                sh "git add k8s/deployment.yaml k8s/pod.yaml"
-                sh "git commit -m 'Update image in Deployment and Pod'"
-                sh "git push origin master"  // You can replace 'master' with your branch name
+                    // Commit the changes to GitHub
+                    sh "git add k8s/deployment.yaml k8s/pod.yaml"
+                    sh "git commit -m 'Update image in Deployment and Pod'"
+                    sh "git push origin master"  // You can replace 'master' with your branch name
+                    }
                 }
             }
         }
