@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         // Define an initial version number
-        IMAGE_VERSION = 1
+        IMAGE_VERSION = currentBuild.number
     }
     stages {
         stage('SCM') {
