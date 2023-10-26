@@ -1,0 +1,19 @@
+apiVersion: v1
+
+kind: Pod
+
+metadata:
+
+  name: todo-pod
+
+spec:
+
+  containers:
+
+  - name: todo-app
+
+    image: wakeel532687/node-app-test:latest
+
+    ports:
+
+    - containerPort: 8000
