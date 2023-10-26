@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: todo-deployment
+
+  labels:
+
+    app: todo-app
+
+spec:
+
+  replicas: 3
+
+  selector:
+
+    matchLabels:
+
+      app: todo-app
+
+  template:
+
+    metadata:
+
+      labels:
+
+        app: todo-app
+
+    spec:
+
+      containers:
+
+      - name: todo-app
+
+        image: wakeel532687/node-app-test:18
+
+        imagePullPolicy: Always  # or IfNotPresent, or Never
+
+        ports:
+
+        - containerPort: 8000
