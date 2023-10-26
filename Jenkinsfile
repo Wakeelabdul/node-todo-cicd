@@ -50,10 +50,10 @@ pipeline {
                 def updatedImageName = "${env.dockerHubUser}/node-app-test:${currentBuildNumber}"
             
                 // Update Deployment YAML
-                sh "sed -i 's|image:.*|image: ${updatedImageName}|' your-deployment.yaml"
+                sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/deployment.yaml"
             
                 // Update Pod YAML if necessary
-                // sh "sed -i 's|image:.*|image: ${updatedImageName}|' your-pod.yaml"
+                sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/pod.yaml"
             
                 // Commit the changes to GitHub
                 sh "git add k8s/deployment.yaml k8s/pod.yaml"
