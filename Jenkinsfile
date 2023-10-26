@@ -1,5 +1,5 @@
 pipeline {
-    agent {
+    agent any
     stages {
         stage("Clone Code") {
             steps {
@@ -17,7 +17,6 @@ pipeline {
                     sh "docker tag node-app-test-new ${env.dockerHubUser}/node-app-test-new:latest"
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                     sh "docker push ${env.dockerHubUser}/node-app-test-new:latest"
-                }
                 }
             }
         }
