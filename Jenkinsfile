@@ -30,7 +30,7 @@ pipeline {
 
         stage("Build and Test") {
             steps {
-                // Increment the version number for each build
+                // Use the current build number as the version number
                 sh "docker build . -t node-app-test-${env.IMAGE_VERSION}"
             }
         }
@@ -38,7 +38,7 @@ pipeline {
         stage("Push to Docker Hub") {
             steps {
                 withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
-                    // Increment the version number for the image tag
+                    // Use the current build number as the version number in the image tag
                     sh "docker tag node-app-test-${env.IMAGE_VERSION} ${env.dockerHubUser}/node-app-test:${env.IMAGE_VERSION}"
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                     sh "docker push ${env.dockerHubUser}/node-app-test:${env.IMAGE_VERSION}"
