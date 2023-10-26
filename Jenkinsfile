@@ -61,8 +61,8 @@ pipeline {
                         sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/pod.yaml"
                 
                         // Commit the changes to GitHub
-                        git config user.email "wakeelabdul50512@gmail.com"
-                        git config user.name "Mohammed Abdul Wakeel"
+                        sh "git config --global user.email 'wakeelabdul50512@gmail.com'"
+                        sh "git config --global user.name 'Mohammed Abdul Wakeel'"
                         sh "git add k8s/deployment.yaml k8s/pod.yaml"
                         sh "git commit -m 'Update image in Deployment and Pod'"
                         sh "git push origin master"  // You can replace 'master' with your branch name
