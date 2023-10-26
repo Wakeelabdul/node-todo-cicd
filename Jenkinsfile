@@ -1,10 +1,5 @@
 pipeline {
     agent {
-        docker {
-            image 'your-docker-image'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-        }
-    }
     stages {
         stage("Clone Code") {
             steps {
@@ -22,6 +17,7 @@ pipeline {
                     sh "docker tag node-app-test-new ${env.dockerHubUser}/node-app-test-new:latest"
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                     sh "docker push ${env.dockerHubUser}/node-app-test-new:latest"
+                }
                 }
             }
         }
