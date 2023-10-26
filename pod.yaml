@@ -12,7 +12,9 @@ spec:
 
   - name: todo-app
 
-    image: wakeel532687/node-app-test:latest
+    image: wakeel532687/node-app-test
+
+    imagePullPolicy: Always
 
     ports:
 
