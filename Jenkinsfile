@@ -64,7 +64,7 @@ pipeline {
                     // Commit the changes to GitHub
                     sh "git add k8s/deployment.yaml k8s/pod.yaml"
                     sh "git commit -m 'Update image in Deployment and Pod'"
-                    sh "git push origin master"  // You can replace 'master' with your branch name
+                    sh "git push"  // You can replace 'master' with your branch name
                 }
             }
         }
