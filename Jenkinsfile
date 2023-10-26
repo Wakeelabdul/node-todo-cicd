@@ -45,7 +45,7 @@ pipeline {
         }
         stage("Update Deployment and Pod") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'gitHub', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: 'gitHub', variable: 'GITHUB_TOKEN')]) {
                     // Your existing code for updating image and committing changes
                 script {
                     def currentBuildNumber = currentBuild.number
