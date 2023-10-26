@@ -63,8 +63,8 @@ pipeline {
                 
                     // Commit the changes to GitHub
                     sh "git add k8s/deployment.yaml k8s/pod.yaml"
-                    sh "git remote set-url origin https://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@github.com/Wakeelabdul/node-todo-cicd.git"
                     sh "git commit -m 'Update image in Deployment and Pod'"
+                    sh "git remote set-url origin https://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@github.com/Wakeelabdul/node-todo-cicd.git"
                     sh "git push origin master"  // You can replace 'master' with your branch name
                 }
             }
