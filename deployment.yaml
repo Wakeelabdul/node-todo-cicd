@@ -36,6 +36,8 @@ spec:
 
         image: wakeel532687/node-app-test:latest
 
+        imagePullPolicy: Always  # or IfNotPresent, or Never
+
         ports:
 
         - containerPort: 8000
