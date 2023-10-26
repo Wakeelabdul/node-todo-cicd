@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    environment {
+        // Define an initial version number
+        IMAGE_VERSION = 1
+    }
     stages {
         stage('SCM') {
             steps {
@@ -26,19 +30,20 @@ pipeline {
 
         stage("Build and Test") {
             steps {
-                sh "docker build . -t node-app-test-new"
+                // Increment the version number for each build
+                sh "docker build . -t node-app-test-${env.IMAGE_VERSION}"
             }
         }
 
         stage("Push to Docker Hub") {
             steps {
                 withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
-                    sh "docker tag node-app-test-new ${env.dockerHubUser}/node-app-test-new:latest"
+                    // Increment the version number for the image tag
+                    sh "docker tag node-app-test-${env.IMAGE_VERSION} ${env.dockerHubUser}/node-app-test:${env.IMAGE_VERSION}"
                     sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
-                    sh "docker push ${env.dockerHubUser}/node-app-test-new:latest"
+                    sh "docker push ${env.dockerHubUser}/node-app-test:${env.IMAGE_VERSION}"
                 }
             }
         }
     }
 }
-
