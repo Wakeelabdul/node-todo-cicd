@@ -67,6 +67,7 @@ pipeline {
                         sh "git add k8s/deployment.yaml k8s/pod.yaml"
                         sh "git commit -m 'Update image in Deployment and Pod'"
                         sh "git remote set-url origin https://${GITHUB_TOKEN}@https://github.com/Wakeelabdul/node-todo-cicd.git"
+                        sh "git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master"
                     }
                 }
             }
