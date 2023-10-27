@@ -34,7 +34,7 @@ spec:
 
       - name: todo-app
 
-        image: wakeel532687/node-app-test:57
+        image: wakeel532687/node-app-test:60
 
         imagePullPolicy: Always  # or IfNotPresent, or Never
 
