@@ -3,7 +3,14 @@ pipeline {
     stages {
         stage('SCM') {
             steps {
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/master']],
+                    userRemoteConfigs: [[
+                        credentialsId: 'jenkins',  // Specify the SSH credential ID here
+                        url: 'https://github.com/Wakeelabdul/node-todo-cicd.git'
+                    ]]
+                ])
             }
         }
 
