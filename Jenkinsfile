@@ -65,7 +65,7 @@ pipeline {
                         sh "git config --global user.name 'Mohammed Abdul Wakeel'"
                         sh "git add k8s/deployment.yaml k8s/pod.yaml"
                         sh "git commit -m 'Update image in Deployment and Pod'"
-                        sh "git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main"
+                        sh "git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master"
                     }
                 }
             }
