@@ -12,7 +12,7 @@ spec:
 
   - name: todo-app
 
-    image: wakeel532687/node-app-test:18
+    image: wakeel532687/node-app-test:57
 
     imagePullPolicy: Always
 
