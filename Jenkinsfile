@@ -52,7 +52,8 @@ pipeline {
                 withCredentials([string(credentialsId: 'gitHub', variable: 'GITHUB_TOKEN')]) {
                     script {
                         def currentBuildNumber = currentBuild.number
-                        def updatedImageName = "${env.dockerHubUser}/node-app-test:${currentBuildNumber}"
+                        def dockerHubUsername = "wakeel532687"  // Replace with your Docker Hub username
+                        def updatedImageName = "${dockerHubUsername}/node-app-test:${currentBuildNumber}"
                 
                         // Update Deployment YAML
                         sh "sed -i 's|image:.*|image: ${updatedImageName}|' k8s/deployment.yaml"
