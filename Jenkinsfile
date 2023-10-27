@@ -49,7 +49,7 @@ pipeline {
                 GIT_USER_NAME = "Wakeelabdul"
             }
             steps {
-                withCredentials([string(credentialsId: 'gitHub', variable: 'GITHUB_TOKEN')]) {
+                withCredentials([string(credentialsId: 'jenkins', variable: 'GITHUB_TOKEN')]) {
                     script {
                         def currentBuildNumber = currentBuild.number
                         def dockerHubUsername = "wakeel532687"  // Replace with your Docker Hub username
