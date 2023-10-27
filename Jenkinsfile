@@ -65,7 +65,7 @@ pipeline {
                         sh "git config --global user.name 'Mohammed Abdul Wakeel'"
                         sh "git add k8s/deployment.yaml k8s/pod.yaml"
                         sh "git commit -m 'Update image in Deployment and Pod'"
-                        sh "git remote set-url origin 'https://$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@https://github.com/Wakeelabdul/node-todo-cicd.git'"
+                        sh "git remote set-url origin https://${GITHUB_TOKEN}@https://github.com/Wakeelabdul/node-todo-cicd.git"
                     }
                 }
             }
